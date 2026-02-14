@@ -167,7 +167,19 @@ export default app;
 
 if (!process.env.VERCEL) {
   const port = Number(process.env.PORT ?? 4000);
-  app.listen(port, () => {
-    console.log(`ERP API listening on http://localhost:${port}`);
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`ERP API listening on http://0.0.0.0:${port}`);
+    console.log(`Local:   http://localhost:${port}`);
+    // Show LAN IP
+    import("os").then(os => {
+      const nets = os.networkInterfaces();
+      for (const name of Object.keys(nets)) {
+        for (const net of nets[name] || []) {
+          if (net.family === "IPv4" && !net.internal) {
+            console.log(`Network: http://${net.address}:${port}`);
+          }
+        }
+      }
+    });
   });
 }
