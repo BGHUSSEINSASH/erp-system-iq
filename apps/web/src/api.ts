@@ -1,7 +1,8 @@
-/** Auto-detect environment: local dev → localhost:4000, production → same origin */
-const BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+/** Auto-detect environment: local dev → localhost:4000, production → env or same origin */
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const BASE = isLocal
   ? "http://localhost:4000"
-  : "";
+  : (import.meta.env.VITE_API_URL || "");
 
 /** Auto-append user identity query params for data isolation */
 function appendIdentity(path: string): string {

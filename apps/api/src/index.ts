@@ -163,8 +163,11 @@ app.get("*", (_req, res) => {
   res.sendFile(path.join(webDist, "index.html"));
 });
 
-const port = Number(process.env.PORT ?? 4000);
+export default app;
 
-app.listen(port, () => {
-  console.log(`ERP API listening on http://localhost:${port}`);
-});
+if (!process.env.VERCEL) {
+  const port = Number(process.env.PORT ?? 4000);
+  app.listen(port, () => {
+    console.log(`ERP API listening on http://localhost:${port}`);
+  });
+}
