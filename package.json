@@ -2,6 +2,9 @@
   "name": "erp-web",
   "private": true,
   "workspaces": ["apps/*"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev:web": "npm -w apps/web run dev",
     "dev:api": "npm -w apps/api run dev",

@@ -1,45 +1,23 @@
 @echo off
-echo ========================================
-echo   ERP System - Firebase Deployment
-echo ========================================
+echo ============================================
+echo   ERP System Deployment - Render.com
+echo ============================================
 echo.
-
-echo [1/4] Building frontend...
-call npm -w apps/web run build
-if %ERRORLEVEL% neq 0 (
-    echo ERROR: Frontend build failed!
-    pause
-    exit /b 1
-)
-echo ✓ Frontend built successfully
+echo GitHub Repo: https://github.com/BGHUSSEINSASH/erp-system-iq
 echo.
-
-echo [2/4] Building Cloud Functions...
-cd functions
-call npx tsc
-cd ..
-if %ERRORLEVEL% neq 0 (
-    echo ERROR: Functions build failed!
-    pause
-    exit /b 1
-)
-echo ✓ Functions built successfully
+echo === Deploy to Render.com ===
+echo 1. Open: https://render.com/deploy?repo=https://github.com/BGHUSSEINSASH/erp-system-iq
+echo 2. Sign up / Log in with GitHub
+echo 3. Click "Apply" - done!
 echo.
-
-echo [3/4] Deploying to Firebase...
-call firebase deploy
-if %ERRORLEVEL% neq 0 (
-    echo.
-    echo ERROR: Deployment failed!
-    echo If you see "Blaze plan" error, upgrade at:
-    echo https://console.firebase.google.com/project/erp-system-iq/usage/details
-    pause
-    exit /b 1
-)
-
+echo === Pushing latest code to GitHub ===
+git add -A
+git commit -m "Update ERP System"
+git push origin master
 echo.
-echo ========================================
-echo   ✓ Deployment Complete!
-echo   URL: https://erp-system-iq.web.app
-echo ========================================
+echo Code pushed! Render.com will auto-deploy.
+echo.
+echo ============================================
+echo   Done! Your app will be live on Render.com
+echo ============================================
 pause
