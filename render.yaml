@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: erp-system
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm -w apps/web run build && npm -w apps/api run build
+    startCommand: npm -w apps/api run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: erp-production-secret-2026

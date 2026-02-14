@@ -1,0 +1,9 @@
+node_modules
+dist
+.dist
+apps/**/dist
+apps/**/.env
+.firebase
+functions/dist
+functions/node_modules
+*.log
